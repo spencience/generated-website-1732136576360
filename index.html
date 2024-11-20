@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tic Tac Toe</title>
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col items-center justify-center">
+<main class="container mx-auto p-4">
+<h1 class="text-4xl font-bold text-center mb-8 text-gray-800">Tic Tac Toe</h1>
+<div class="max-w-md mx-auto bg-white rounded-xl shadow-md p-6">
+<div id="status" class="text-xl text-center mb-4 text-gray-700">Player X's Turn</div>
+<div id="board" class="grid grid-cols-3 gap-2 mb-6">
+<button class="cell h-24 bg-gray-50 rounded hover:bg-gray-100 text-4xl font-bold"></button>
+<button class="cell h-24 bg-gray-50 rounded hover:bg-gray-100 text-4xl font-bold"></button>
+<button class="cell h-24 bg-gray-50 rounded hover:bg-gray-100 text-4xl font-bold"></button>
+<button class="cell h-24 bg-gray-50 rounded hover:bg-gray-100 text-4xl font-bold"></button>
+<button class="cell h-24 bg-gray-50 rounded hover:bg-gray-100 text-4xl font-bold"></button>
+<button class="cell h-24 bg-gray-50 rounded hover:bg-gray-100 text-4xl font-bold"></button>
+<button class="cell h-24 bg-gray-50 rounded hover:bg-gray-100 text-4xl font-bold"></button>
+<button class="cell h-24 bg-gray-50 rounded hover:bg-gray-100 text-4xl font-bold"></button>
+<button class="cell h-24 bg-gray-50 rounded hover:bg-gray-100 text-4xl font-bold"></button>
+</div>
+<button id="reset" class="w-full py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors">Reset Game</button>
+</div>
+</main>
+<script>
+        const board = document.getElementById('board');
+        const cells = document.querySelectorAll('.cell');
+        const status = document.getElementById('status');
+        const resetBtn = document.getElementById('reset');
+        let currentPlayer = 'X';
+        let gameBoard = Array(9).fill('');
+        let gameActive = true;
+
+        const winPatterns = [
+            [0, 1, 2], [3, 4, 5], [6, 7, 8],
+            [0, 3, 6], [1, 4, 7], [2, 5, 8],
+            [0, 4, 8], [2, 4, 6]
+        ];
+
+        cells.forEach((cell, index) => {
+            cell.addEventListener('click', () => handleCellClick(index));
+        });
+
+        resetBtn.addEventListener('click', resetGame);
+
+        function handleCellClick(index) {
+            if (!gameBoard[index] && gameActive) {
+                gameBoard[index] = currentPlayer;
+                cells[index].textContent = currentPlayer;
+                cells[index].classList.add(currentPlayer === 'X' ? 'text-blue-500' : 'text-red-500');
+
+                if (checkWin()) {
+                    status.textContent = `Player ${currentPlayer} Wins!`;
+                    gameActive = false;
+                } else if (gameBoard.every(cell => cell !== '')) {
+                    status.textContent = "It's a Draw!";
+                    gameActive = false;
+                } else {
+                    currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+                    status.textContent = `Player ${currentPlayer}'s Turn`;
+                }
+            }
+        }
+
+        function checkWin() {
+            return winPatterns.some(pattern => {
+                return pattern.every(index => {
+                    return gameBoard[index] === currentPlayer;
+                });
+            });
+        }
+
+        function resetGame() {
+            gameBoard = Array(9).fill('');
+            gameActive = true;
+            currentPlayer = 'X';
+            status.textContent = "Player X's Turn";
+            cells.forEach(cell => {
+                cell.textContent = '';
+                cell.classList.remove('text-blue-500', 'text-red-500');
+            });
+        }
+    </script>
+</body>
+</html>
+</body>
+</html>
+</body></html>
+</body>
+</html>
+</body>
+</html>
+</body>
+</html>
+</body>
+</html>
+</body>
+</html>
+</script>
+</body>
+</html>
+</body>
+</html>
+</body>
+</html>
